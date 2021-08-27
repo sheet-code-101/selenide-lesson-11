@@ -6,7 +6,7 @@ import pages.PracticeFormPage;
 
 import static io.qameta.allure.Allure.step;
 
-public class AutomationPracticeFormTest {
+public class AutomationPracticeFormTest extends BaseTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
     Faker faker = new Faker();
