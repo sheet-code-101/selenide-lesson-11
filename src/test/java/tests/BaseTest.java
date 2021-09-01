@@ -7,6 +7,9 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import static config.Credentials.*;
+import static java.lang.String.format;
+
 
 public class BaseTest {
 
@@ -18,9 +21,13 @@ public class BaseTest {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
+        String login = credentials.login();
+        String password = credentials.password();
+        String url = System.getProperty("url", "selenoid.autotests.cloud/wd/hub/");
+
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = format("https://%s:%s@%s", login, password, url);
     }
 
     @AfterEach
